@@ -48,9 +48,9 @@ function Instructor({ id, name }) {
       <p>{name}</p>
       <LectureList lectures={lecturesOfInstructor} />
       <button onClick={toggleLectureForm} type="button">
-        Open Lecture Form
+        {lectureFormIsOpen ? "Close" : "Open"} Lecture Form
       </button>
-      {lectureFormIsOpen && <LectureForm />}
+      {lectureFormIsOpen && <LectureForm instructorId={id} />}
     </article>
   );
 }

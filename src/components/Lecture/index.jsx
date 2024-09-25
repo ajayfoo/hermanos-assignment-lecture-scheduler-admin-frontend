@@ -1,12 +1,13 @@
 import PropType from "prop-types";
-
+import classes from "./Lecture.module.css";
 function Lecture({ courseName, batchName, date }) {
+  const formattedDate = date.split("T")[0];
   return (
-    <section>
-      <p>{courseName}</p>
-      <p>{batchName}</p>
-      <p>{date}</p>
-    </section>
+    <tr className={classes.lecture}>
+      <td>{courseName}</td>
+      <td>{batchName}</td>
+      <td>{formattedDate}</td>
+    </tr>
   );
 }
 

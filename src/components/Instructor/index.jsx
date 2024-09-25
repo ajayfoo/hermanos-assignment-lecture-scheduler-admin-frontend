@@ -2,6 +2,7 @@ import PropType from "prop-types";
 import { useEffect, useState } from "react";
 import LectureList from "../LectureList";
 import LectureForm from "../LectureForm";
+import classes from "./Instructor.module.css";
 
 const getLectures = async (instructorId, signal) => {
   try {
@@ -47,10 +48,14 @@ function Instructor({ id, name }) {
     setLecturesOfInstructor([...lecturesOfInstructor, lecture]);
   };
   return (
-    <article>
-      <p>{name}</p>
+    <article className={classes.instructor}>
+      <p className={classes["instructor-name"]}>{name}</p>
       <LectureList lectures={lecturesOfInstructor} />
-      <button onClick={toggleLectureForm} type="button">
+      <button
+        className={classes["toggle-form-btn"]}
+        onClick={toggleLectureForm}
+        type="button"
+      >
         {lectureFormIsOpen ? "Close" : "Open"} Lecture Form
       </button>
       {lectureFormIsOpen && (

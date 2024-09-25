@@ -1,0 +1,15 @@
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-200);
+  place-content: center;
+  place-items: center;
+  background-color: var(--surface-container);
+}
+.nav > a {
+  text-decoration: none;
+  color: var(--on-surface);
+}
+.nav > a:hover {
+  text-decoration: underline;
+}

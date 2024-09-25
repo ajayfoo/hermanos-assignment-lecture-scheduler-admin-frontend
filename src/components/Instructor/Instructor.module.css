@@ -1,0 +1,22 @@
+.instructor {
+  background-color: var(--surface-container-high);
+  padding-block-end: var(--size-200);
+  display: grid;
+  align-content: flex-start;
+}
+
+.instructor-name {
+  padding: var(--size-200) var(--size-300);
+  margin-block-end: var(--size-200);
+  background-color: var(--tertiary);
+  color: var(--on-tertiary);
+}
+
+.toggle-form-btn {
+  background-color: var(--secondary);
+  color: var(--on-secondary);
+  border: none;
+  padding: var(--size-100) var(--size-200);
+  margin-block-start: var(--size-200);
+  justify-self: center;
+}

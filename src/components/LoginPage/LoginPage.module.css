@@ -1,0 +1,35 @@
+.main {
+  block-size: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.form {
+  background-color: var(--surface-container);
+  padding: var(--size-500) var(--size-600);
+  display: grid;
+  gap: var(--size-300);
+}
+
+.field {
+  display: grid;
+  gap: var(--size-100);
+}
+
+.field > input {
+  font-size: inherit;
+  font-family: inherit;
+  padding: var(--size-50) var(--size-25);
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface);
+  border: none;
+}
+
+.submit-button {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  padding: var(--size-50);
+}

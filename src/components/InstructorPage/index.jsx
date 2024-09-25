@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import Instructor from "../Instructor";
+import classes from "./InstructorPage.module.css";
 
 const getAllInstructors = async (signal) => {
   try {
@@ -35,9 +36,13 @@ function InstructorPage() {
       controller.abort();
     };
   }, []);
-  return instructors.map((i) => (
-    <Instructor key={i.id} id={i.id} name={i.name} />
-  ));
+  return (
+    <div className={classes.instructors}>
+      {instructors.map((i) => (
+        <Instructor key={i.id} id={i.id} name={i.name} />
+      ))}
+    </div>
+  );
 }
 
 export default InstructorPage;

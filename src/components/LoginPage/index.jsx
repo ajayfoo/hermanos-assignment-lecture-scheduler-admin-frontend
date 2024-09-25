@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import classes from "./LoginPage.module.css";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -33,31 +34,33 @@ function LoginPage() {
     return <Navigate to="/" />;
   }
   return (
-    <form onSubmit={handleLoginFormSubmit}>
-      <section className="field">
-        <label htmlFor={usernameFieldId}>Username</label>
-        <input
-          required
-          value={username}
-          onInput={handleUsernameInput}
-          type="text"
-          id={usernameFieldId}
-          autoComplete="username"
-        />
-      </section>
-      <section className="field">
-        <label htmlFor={passwordFieldId}>Password</label>
-        <input
-          required
-          value={password}
-          onInput={handlePasswordInput}
-          type="password"
-          autoComplete="current-password"
-          id={passwordFieldId}
-        />
-      </section>
-      <button>Login</button>
-    </form>
+    <div className={classes.main}>
+      <form className={classes.form} onSubmit={handleLoginFormSubmit}>
+        <section className={classes.field}>
+          <label htmlFor={usernameFieldId}>Username</label>
+          <input
+            required
+            value={username}
+            onInput={handleUsernameInput}
+            type="text"
+            id={usernameFieldId}
+            autoComplete="username"
+          />
+        </section>
+        <section className={classes.field}>
+          <label htmlFor={passwordFieldId}>Password</label>
+          <input
+            required
+            value={password}
+            onInput={handlePasswordInput}
+            type="password"
+            autoComplete="current-password"
+            id={passwordFieldId}
+          />
+        </section>
+        <button className={classes["submit-button"]}>Login</button>
+      </form>
+    </div>
   );
 }
 

@@ -1,0 +1,24 @@
+.lecture-list {
+  padding-inline: var(--size-200);
+  align-self: flex-start;
+}
+
+.lecture-list > header > p {
+  text-align: center;
+  font-weight: 700;
+}
+
+.table {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+.table th + th,
+.table td + td {
+  border-left: 1px solid;
+}
+.table th,
+.table td {
+  border-block-end: 1px solid;
+  padding: var(--size-100);
+  text-align: center;
+}

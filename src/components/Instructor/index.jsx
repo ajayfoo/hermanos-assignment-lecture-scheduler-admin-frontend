@@ -1,6 +1,7 @@
 import PropType from "prop-types";
 import { useEffect, useState } from "react";
-import Lecture from "../Lecture";
+import LectureList from "../LectureList";
+import LectureForm from "../LectureForm";
 
 const getLectures = async (instructorId, signal) => {
   try {
@@ -22,7 +23,9 @@ const getLectures = async (instructorId, signal) => {
     throw err;
   }
 };
+
 function Instructor({ id, name }) {
+  const [lectureFormIsOpen, setLectureFormIsOpen] = useState(false);
   const [lecturesOfInstructor, setLecturesOfInstructor] = useState([]);
   useEffect(() => {
     const controller = new AbortController();
@@ -36,17 +39,18 @@ function Instructor({ id, name }) {
       controller.abort();
     };
   }, [id]);
+  const toggleLectureForm = () => {
+    setLectureFormIsOpen(!lectureFormIsOpen);
+  };
+
   return (
     <article>
       <p>{name}</p>
-      {lecturesOfInstructor.map((l) => (
-        <Lecture
-          key={l.id}
-          courseName={l.courseName}
-          batchName={l.batchName}
-          date={l.date}
-        />
-      ))}
+      <LectureList lectures={lecturesOfInstructor} />
+      <button onClick={toggleLectureForm} type="button">
+        Open Lecture Form
+      </button>
+      {lectureFormIsOpen && <LectureForm />}
     </article>
   );
 }

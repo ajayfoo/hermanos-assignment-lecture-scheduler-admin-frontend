@@ -64,7 +64,7 @@ const postNewLecture = async (instructorId, batchId, date) => {
   }
 };
 
-function LectureForm({ instructorId }) {
+function LectureForm({ instructorId, onAddingNewLecture }) {
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [selectedBatchId, setSelectedBatchId] = useState("");
   const [date, setDate] = useState("");
@@ -115,7 +115,23 @@ function LectureForm({ instructorId }) {
   };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    await postNewLecture(instructorId, selectedBatchId, date);
+    const newLectureId = await postNewLecture(
+      instructorId,
+      selectedBatchId,
+      date
+    );
+    if (newLectureId === null) return;
+    const newLecture = {
+      id: newLectureId,
+      courseName: courses.find(
+        (c) => parseInt(c.id) === parseInt(selectedCourseId)
+      ).name,
+      batchName: batches.find(
+        (b) => parseInt(b.id) === parseInt(selectedBatchId)
+      ).name,
+      date,
+    };
+    onAddingNewLecture(newLecture);
   };
   const handleDateChange = (e) => {
     setDate(e.target.value);
@@ -168,6 +184,7 @@ function LectureForm({ instructorId }) {
 }
 
 LectureForm.propTypes = {
+  onAddingNewLecture: PropType.func,
   instructorId: PropType.number,
 };
 

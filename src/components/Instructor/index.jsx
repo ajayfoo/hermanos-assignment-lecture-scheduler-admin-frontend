@@ -42,7 +42,9 @@ function Instructor({ id, name }) {
   const toggleLectureForm = () => {
     setLectureFormIsOpen(!lectureFormIsOpen);
   };
-
+  const handleAddingNewLecture = (lecture) => {
+    setLecturesOfInstructor([...lecturesOfInstructor, lecture]);
+  };
   return (
     <article>
       <p>{name}</p>
@@ -50,7 +52,12 @@ function Instructor({ id, name }) {
       <button onClick={toggleLectureForm} type="button">
         {lectureFormIsOpen ? "Close" : "Open"} Lecture Form
       </button>
-      {lectureFormIsOpen && <LectureForm instructorId={id} />}
+      {lectureFormIsOpen && (
+        <LectureForm
+          onAddingNewLecture={handleAddingNewLecture}
+          instructorId={id}
+        />
+      )}
     </article>
   );
 }

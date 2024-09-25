@@ -11,6 +11,7 @@ const postNewCourse = async (name, level, description, image) => {
     const response = await fetch(`http://localhost:3000/courses`, {
       method: "POST",
       body: formData,
+      credentials: "include",
     });
     if (response.ok) {
       const courseIdAndImageUrl = await response.json();

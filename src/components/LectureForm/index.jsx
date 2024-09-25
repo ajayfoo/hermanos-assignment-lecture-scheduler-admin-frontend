@@ -5,6 +5,7 @@ const getAllCourses = async (signal) => {
   try {
     const response = await fetch("http://localhost:3000/courses", {
       signal,
+      credentials: "include",
     });
     if (!response.ok) {
       return null;
@@ -25,6 +26,7 @@ const getAllBatchesOfCourseId = async (id, signal) => {
       `http://localhost:3000/courses/${id}/batches`,
       {
         signal,
+        credentials: "include",
       }
     );
     if (!response.ok) {
@@ -52,6 +54,7 @@ const postNewLecture = async (instructorId, batchId, date) => {
         batchId,
         date,
       }),
+      credentials: "include",
     });
     if (response.ok) {
       const lectureId = await response.text();

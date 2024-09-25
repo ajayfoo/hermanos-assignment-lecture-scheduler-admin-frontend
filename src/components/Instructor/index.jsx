@@ -9,6 +9,7 @@ const getLectures = async (instructorId, signal) => {
       `http://localhost:3000/instructors/${instructorId}/lectures`,
       {
         signal,
+        credentials: "include",
       }
     );
     if (!response.ok) {

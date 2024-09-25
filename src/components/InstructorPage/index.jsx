@@ -6,6 +6,7 @@ const getAllInstructors = async (signal) => {
   try {
     const response = await fetch("http://localhost:3000/instructors", {
       signal,
+      credentials: "include",
     });
     if (!response.ok) {
       return null;

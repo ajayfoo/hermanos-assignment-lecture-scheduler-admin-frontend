@@ -6,6 +6,7 @@ const getAllCourses = async (signal) => {
   try {
     const response = await fetch("http://localhost:3000/courses", {
       signal,
+      credentials: "include",
     });
     if (!response.ok) {
       return null;

@@ -51,7 +51,13 @@ function CoursePage() {
         <CourseForm onAddingNewCourse={handleAddingNewCourse} />
       )}
       {courses.map((c) => (
-        <Course key={c.id} name={c.name} />
+        <Course
+          key={c.id}
+          name={c.name}
+          level={c.level}
+          description={c.description}
+          imageUrl={c.imageUrl}
+        />
       ))}
     </div>
   );

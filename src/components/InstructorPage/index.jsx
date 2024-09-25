@@ -34,7 +34,9 @@ function InstructorPage() {
       controller.abort();
     };
   }, []);
-  return instructors.map((i) => <Instructor key={i.id} name={i.name} />);
+  return instructors.map((i) => (
+    <Instructor key={i.id} id={i.id} name={i.name} />
+  ));
 }
 
 export default InstructorPage;

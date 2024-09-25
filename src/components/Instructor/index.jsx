@@ -7,7 +7,7 @@ import classes from "./Instructor.module.css";
 const getLectures = async (instructorId, signal) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/instructors/${instructorId}/lectures`,
+      `${import.meta.env.VITE_SERVER_URL}/instructors/${instructorId}/lectures`,
       {
         signal,
         credentials: "include",

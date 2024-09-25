@@ -15,9 +15,12 @@ const router = createBrowserRouter([
     element: <Main />,
     loader: async () => {
       try {
-        const response = await fetch("http://localhost:3000/instructors", {
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/instructors`,
+          {
+            credentials: "include",
+          }
+        );
         if (response.ok) {
           return null;
         }
@@ -42,9 +45,12 @@ const router = createBrowserRouter([
     element: <LoginPage />,
     loader: async () => {
       try {
-        const response = await fetch("http://localhost:3000/instructors", {
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/instructors`,
+          {
+            credentials: "include",
+          }
+        );
         if (response.ok) {
           return redirect("/");
         }

@@ -3,10 +3,13 @@ import classes from "./Main.module.css";
 
 const logout = async () => {
   try {
-    const response = await fetch("http://localhost:3000/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/auth/logout`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
     return response.ok;
   } catch {
     console.log("something went wrong");

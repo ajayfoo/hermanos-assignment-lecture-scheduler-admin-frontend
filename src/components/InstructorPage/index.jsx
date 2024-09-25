@@ -5,10 +5,13 @@ import classes from "./InstructorPage.module.css";
 
 const getAllInstructors = async (signal) => {
   try {
-    const response = await fetch("http://localhost:3000/instructors", {
-      signal,
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/instructors`,
+      {
+        signal,
+        credentials: "include",
+      }
+    );
     if (!response.ok) {
       return null;
     }

@@ -4,7 +4,7 @@ import classes from "./LectureForm.module.css";
 
 const getAllCourses = async (signal) => {
   try {
-    const response = await fetch("http://localhost:3000/courses", {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/courses`, {
       signal,
       credentials: "include",
     });
@@ -24,7 +24,7 @@ const getAllCourses = async (signal) => {
 const getAllBatchesOfCourseId = async (id, signal) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/courses/${id}/batches`,
+      `${import.meta.env.VITE_SERVER_URL}/courses/${id}/batches`,
       {
         signal,
         credentials: "include",
@@ -44,19 +44,24 @@ const getAllBatchesOfCourseId = async (id, signal) => {
 };
 
 const postNewLecture = async (instructorId, batchId, date) => {
+  instructorId = parseInt(instructorId);
+  batchId = parseInt(batchId);
   try {
-    const response = await fetch(`http://localhost:3000/lectures`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        instructorId,
-        batchId,
-        date,
-      }),
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/lectures`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          instructorId,
+          batchId,
+          date,
+        }),
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       const lectureId = await response.text();
       return lectureId;

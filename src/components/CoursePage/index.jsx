@@ -5,7 +5,7 @@ import classes from "./CoursePage.module.css";
 
 const getAllCourses = async (signal) => {
   try {
-    const response = await fetch("http://localhost:3000/courses", {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/courses`, {
       signal,
       credentials: "include",
     });

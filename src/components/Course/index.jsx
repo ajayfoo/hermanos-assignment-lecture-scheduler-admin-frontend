@@ -6,7 +6,7 @@ import classes from "./Course.module.css";
 const getBatches = async (courseId, signal) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/courses/${courseId}/batches`,
+      `${import.meta.env.VITE_SERVER_URL}/courses/${courseId}/batches`,
       {
         signal,
         credentials: "include",

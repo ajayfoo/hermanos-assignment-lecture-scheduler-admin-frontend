@@ -2,9 +2,10 @@ import { useState } from "react";
 import PropType from "prop-types";
 
 const postNewBatch = async (name, courseId) => {
+  courseId = parseInt(courseId);
   try {
     const response = await fetch(
-      `http://localhost:3000/courses/${courseId}/batches`,
+      `${import.meta.env.VITE_SERVER_URL}/courses/${courseId}/batches`,
       {
         method: "POST",
         headers: {

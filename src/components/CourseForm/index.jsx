@@ -9,7 +9,7 @@ const postNewCourse = async (name, level, description, image) => {
   formData.append("description", description);
   formData.append("image", image);
   try {
-    const response = await fetch(`http://localhost:3000/courses`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/courses`, {
       method: "POST",
       body: formData,
       credentials: "include",

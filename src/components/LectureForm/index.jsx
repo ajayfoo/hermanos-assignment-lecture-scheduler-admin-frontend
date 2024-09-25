@@ -40,9 +40,34 @@ const getAllBatchesOfCourseId = async (id, signal) => {
   }
 };
 
+const postNewLecture = async (instructorId, batchId, date) => {
+  try {
+    const response = await fetch(`http://localhost:3000/lectures`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        instructorId,
+        batchId,
+        date,
+      }),
+    });
+    if (response.ok) {
+      const lectureId = await response.text();
+      return lectureId;
+    }
+    return null;
+  } catch {
+    console.error("something went wrong");
+    return null;
+  }
+};
+
 function LectureForm({ instructorId }) {
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [selectedBatchId, setSelectedBatchId] = useState("");
+  const [date, setDate] = useState("");
   const [courses, setCourses] = useState([]);
   const [batches, setBatches] = useState([]);
   const courseFieldId = instructorId + "-form-course";
@@ -73,27 +98,37 @@ function LectureForm({ instructorId }) {
       );
       if (!allBatches) return;
       setBatches(allBatches);
+      if (allBatches.length !== 0) {
+        setSelectedBatchId(allBatches[0].id);
+      }
     };
     fetchAndSetBatches();
     return () => {
       controller.abort();
     };
   }, [selectedCourseId]);
-  const handleCourseChanged = (e) => {
+  const handleCourseChange = (e) => {
     setSelectedCourseId(e.target.value);
   };
-  const handleBatchChanged = (e) => {
+  const handleBatchChange = (e) => {
     setSelectedBatchId(e.target.value);
   };
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    await postNewLecture(instructorId, selectedBatchId, date);
+  };
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <section className="field">
         <label htmlFor={courseFieldId}>Course</label>
         <select
           value={selectedCourseId}
           required
           id={courseFieldId}
-          onChange={handleCourseChanged}
+          onChange={handleCourseChange}
         >
           {courses.map((c) => (
             <option key={c.id} value={c.id}>
@@ -108,7 +143,7 @@ function LectureForm({ instructorId }) {
           value={selectedBatchId}
           required
           id={batchFieldId}
-          onChange={handleBatchChanged}
+          onChange={handleBatchChange}
         >
           {batches.map((b) => (
             <option key={b.id} value={b.id}>
@@ -119,8 +154,15 @@ function LectureForm({ instructorId }) {
       </section>
       <section className="field">
         <label htmlFor={dateFieldId}>Date</label>
-        <input required type="date" id={dateFieldId} />
+        <input
+          value={date}
+          onChange={handleDateChange}
+          required
+          type="date"
+          id={dateFieldId}
+        />
       </section>
+      <button>Add</button>
     </form>
   );
 }

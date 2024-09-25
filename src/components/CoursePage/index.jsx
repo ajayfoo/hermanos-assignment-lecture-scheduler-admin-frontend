@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Course from "../Course";
+import CourseForm from "../CourseForm";
 
 const getAllCourses = async (signal) => {
   try {
@@ -20,6 +21,7 @@ const getAllCourses = async (signal) => {
 };
 
 function CoursePage() {
+  const [courseFormIsOpen, setCourseFormIsOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     const controller = new AbortController();
@@ -33,7 +35,26 @@ function CoursePage() {
       controller.abort();
     };
   }, []);
-  return courses.map((c) => <Course key={c.id} name={c.name} />);
+  const toggleCourseForm = () => {
+    setCourseFormIsOpen(!courseFormIsOpen);
+  };
+  const handleAddingNewCourse = (newCourse) => {
+    setCourses([...courses, newCourse]);
+  };
+  return (
+    <div>
+      <h1>Courses</h1>
+      <button onClick={toggleCourseForm} type="button">
+        {courseFormIsOpen ? "Close" : "Open"} Course Form
+      </button>
+      {courseFormIsOpen && (
+        <CourseForm onAddingNewCourse={handleAddingNewCourse} />
+      )}
+      {courses.map((c) => (
+        <Course key={c.id} name={c.name} />
+      ))}
+    </div>
+  );
 }
 
 export default CoursePage;

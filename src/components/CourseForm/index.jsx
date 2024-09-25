@@ -1,5 +1,6 @@
 import PropType from "prop-types";
 import { useState } from "react";
+import classes from "./CourseForm.module.css";
 
 const postNewCourse = async (name, level, description, image) => {
   const formData = new FormData();
@@ -68,8 +69,12 @@ function CourseForm({ onAddingNewCourse }) {
     setImage(e.target.files[0]);
   };
   return (
-    <form encType="multipart/form-date" onSubmit={handleFormSubmit}>
-      <section className="field">
+    <form
+      className={classes["course-form"]}
+      encType="multipart/form-date"
+      onSubmit={handleFormSubmit}
+    >
+      <section className={classes.field}>
         <label htmlFor={nameFieldId}>Name</label>
         <input
           required
@@ -79,7 +84,7 @@ function CourseForm({ onAddingNewCourse }) {
           id={nameFieldId}
         />
       </section>
-      <section className="field">
+      <section className={classes.field}>
         <label htmlFor={levelFieldId}>Level</label>
         <input
           required
@@ -89,7 +94,7 @@ function CourseForm({ onAddingNewCourse }) {
           id={levelFieldId}
         />
       </section>
-      <section className="field">
+      <section className={classes.field}>
         <label htmlFor={descriptionFieldId}>Description</label>
         <textarea
           required
@@ -99,10 +104,10 @@ function CourseForm({ onAddingNewCourse }) {
           id={descriptionFieldId}
         />
       </section>
-      <section className="field">
+      <section className={classes.field}>
         <input required onChange={handleImageChange} type="file" id="image" />
       </section>
-      <button>Add</button>
+      <button className={classes["submit-button"]}>Add</button>
     </form>
   );
 }

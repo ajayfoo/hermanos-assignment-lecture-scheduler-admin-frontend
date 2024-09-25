@@ -19,14 +19,16 @@ function LectureList({ lectures }) {
             <th>Date</th>
           </tr>
         </thead>
-        {lectures.map((l) => (
-          <Lecture
-            key={l.id}
-            courseName={l.courseName}
-            batchName={l.batchName}
-            date={l.date}
-          />
-        ))}
+        <tbody>
+          {lectures.map((l) => (
+            <Lecture
+              key={l.id}
+              courseName={l.courseName}
+              batchName={l.batchName}
+              date={l.date}
+            />
+          ))}
+        </tbody>
       </table>
     </section>
   );

@@ -1,6 +1,7 @@
 import PropType from "prop-types";
 import BatchForm from "../BatchForm";
 import { useEffect, useState } from "react";
+import classes from "./Course.module.css";
 
 const getBatches = async (courseId, signal) => {
   try {
@@ -46,14 +47,15 @@ function Course({ name, level, description, imageUrl, id }) {
     setBatches([...batches, newBatch]);
   };
   return (
-    <article>
+    <article className={classes.course}>
       <p>Name: {name}</p>
       <p>Level: {level}</p>
       <p>Description: {description}</p>
       <img src={imageUrl} alt="course" />
-      {batches.map((b) => (
-        <p key={b.id}>{b.name}</p>
-      ))}
+      <section>
+        <header>Batches</header>
+        <div className="batches">{batches.map((b) => b.name).join(", ")}</div>
+      </section>
       <button onClick={toggleBatchForm} type="button">
         {batchFormIsOpen ? "Close" : "Open"} Batch Form
       </button>
@@ -69,7 +71,7 @@ Course.propTypes = {
   level: PropType.string,
   description: PropType.string,
   imageUrl: PropType.string,
-  id: PropType.string,
+  id: PropType.number,
 };
 
 export default Course;

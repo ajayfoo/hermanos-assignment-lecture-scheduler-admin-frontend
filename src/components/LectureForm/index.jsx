@@ -1,5 +1,6 @@
 import PropType from "prop-types";
 import { useEffect, useState } from "react";
+import classes from "./LectureForm.module.css";
 
 const getAllCourses = async (signal) => {
   try {
@@ -140,8 +141,8 @@ function LectureForm({ instructorId, onAddingNewLecture }) {
     setDate(e.target.value);
   };
   return (
-    <form onSubmit={handleFormSubmit}>
-      <section className="field">
+    <form className={classes["lecture-form"]} onSubmit={handleFormSubmit}>
+      <section className={classes.field}>
         <label htmlFor={courseFieldId}>Course</label>
         <select
           value={selectedCourseId}
@@ -156,7 +157,7 @@ function LectureForm({ instructorId, onAddingNewLecture }) {
           ))}
         </select>
       </section>
-      <section className="field">
+      <section className={classes.field}>
         <label htmlFor={batchFieldId}>Batch</label>
         <select
           value={selectedBatchId}
@@ -171,7 +172,7 @@ function LectureForm({ instructorId, onAddingNewLecture }) {
           ))}
         </select>
       </section>
-      <section className="field">
+      <section className={classes.field}>
         <label htmlFor={dateFieldId}>Date</label>
         <input
           value={date}
@@ -181,7 +182,7 @@ function LectureForm({ instructorId, onAddingNewLecture }) {
           id={dateFieldId}
         />
       </section>
-      <button>Add</button>
+      <button className={classes["submit-button"]}>Add</button>
     </form>
   );
 }

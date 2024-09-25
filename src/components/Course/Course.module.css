@@ -1,0 +1,4 @@
+.course {
+  background-color: var(--surface-container-high);
+  padding: var(--size-100) var(--size-200);
+}

@@ -3,6 +3,9 @@
   align-self: flex-start;
 }
 
+.lecture-list > header {
+  margin-block-end: var(--size-200);
+}
 .lecture-list > header > p {
   text-align: center;
   font-weight: 700;

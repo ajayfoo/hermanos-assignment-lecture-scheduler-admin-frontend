@@ -1,6 +1,6 @@
 .nav {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--size-200);
   place-content: center;
   place-items: center;

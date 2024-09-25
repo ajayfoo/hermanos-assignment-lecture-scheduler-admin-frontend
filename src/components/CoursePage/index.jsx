@@ -58,6 +58,7 @@ function CoursePage() {
           level={c.level}
           description={c.description}
           imageUrl={c.imageUrl}
+          id={c.id}
         />
       ))}
     </div>

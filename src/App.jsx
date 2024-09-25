@@ -40,6 +40,19 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+    loader: async () => {
+      try {
+        const response = await fetch("http://localhost:3000/instructors", {
+          credentials: "include",
+        });
+        if (response.ok) {
+          return redirect("/");
+        }
+        return null;
+      } catch {
+        return null;
+      }
+    },
   },
 ]);
 

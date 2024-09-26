@@ -5,6 +5,7 @@
 - [How to setup?](#how-to-setup)
 - [How to run?](#how-to-run)
 - [Screenshots](#screenshots)
+- [Video Demo](#video-demo)
 ## How to setup?
 The setup needs to be done only once.
 
@@ -29,4 +30,7 @@ npm run dev
 ![image](https://github.com/user-attachments/assets/b4982bee-af6a-4aff-ab21-096912775f9a)
 ### Courses Page
 ![image](https://github.com/user-attachments/assets/d4e3cdb7-d67e-4033-94ba-383a262cb012)
+
+## Video demo
+https://github.com/user-attachments/assets/c17ccda0-4f56-4222-9763-f4976ecf97a8
 
